@@ -3,7 +3,7 @@
 This project provides many demo programs to show that the non-cooperative games always converges to Nash equilibrium no matter what initial strategy is given.
 The convergence path can be nicely visualized in the 2-D or 3-D graph.
 
-More math details is in [this paper](https://arxiv.org/abs/1908.09021).
+More math details are in [this paper](https://arxiv.org/abs/1908.09021).
 
 ## Requirements
 ***
