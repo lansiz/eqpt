@@ -32,13 +32,13 @@ class FPI_2P(object):
         start_time = datetime.datetime.now()
         self.init_stats()
         for i in range(iterations):
-            payoff_row = self.str_row.dot(self.payoff_matrix_row).dot(self.str_col.T)
-            vertex_payoff_row = np.identity(self.rows).dot(self.payoff_matrix_row).dot(self.str_col.T)
+            vertex_payoff_row = self.payoff_matrix_row.dot(self.str_col.T)
+            payoff_row = self.str_row.dot(vertex_payoff_row)
             payoff_gain_row = vertex_payoff_row - payoff_row
             self.lambda_row = np.where(payoff_gain_row > 0, payoff_gain_row, 0)
 
-            payoff_col = self.str_col.dot(self.payoff_matrix_col.T).dot(self.str_row.T)
-            vertex_payoff_col = np.identity(self.cols).dot(self.payoff_matrix_col.T).dot(self.str_row.T)
+            vertex_payoff_col = self.payoff_matrix_col.T.dot(self.str_row.T)
+            payoff_col = self.str_col.dot(vertex_payoff_col)
             payoff_gain_col = vertex_payoff_col - payoff_col
             self.lambda_col = np.where(payoff_gain_col > 0, payoff_gain_col, 0)
 

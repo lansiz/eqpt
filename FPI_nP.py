@@ -64,7 +64,7 @@ class Game(object):
         prob_dist = np.zeros(len(self.pure_product_space))
         # i: the index of point in the prodcut space
         # j: the index of player
-        # k: the index of the pure strategy of player i
+        # k: the index of the pure strategy of player j
         for i, combi in enumerate(self.pure_product_space):
             prob = 1
             for j, k in enumerate(combi):
