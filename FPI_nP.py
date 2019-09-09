@@ -15,18 +15,27 @@ class Player(object):
     def init_mixed_strategies(self):
         self.mixed_strategy = utils.randomize_mixed_strategy(self.pure_strategies_num)
 
-    def run_one_iteration(self, game, rate):
-        ''' the core of everything'''
-        self.payoff = self.payoff_vector.dot(game.compute_prob_dist())
+    def run_one_iteration(self, game, rate, player_index):
+        ''' the core of everything
+        time complexity: (n-1)g^n multiplications,
+        where g is the average of players' pure strategies number
+        '''
 
-        prob_dist = np.apply_along_axis(game.compute_prob_dist, 0, np.identity(self.pure_strategies_num), self)
-        vertex_payoff = self.payoff_vector.dot(prob_dist)
-        temp = vertex_payoff - self.payoff
-        self.target = np.where(temp > 0, temp, 0)
-
-        self.mixed_strategy = utils.vector_update(self.mixed_strategy, self.target, rate)
-
-        self.vgs_l.append(self.target.sum())
+        # step 1: evalute vertex payoff vector: \vec{v}
+        v = []
+        for j in np.arange(self.pure_strategies_num):
+            vertex_prob_dist = game.compute_joint_dist_on_vertex(player_index, j)
+            a_vertex_payoff = vertex_prob_dist.dot(self.payoff_vector)
+            v.append(a_vertex_payoff)
+        # step 2: compute payoff
+        payoff = self.mixed_strategy.dot(v)
+        # step 3: compute VGV
+        temp = v - payoff
+        self.VGV = np.where(temp > 0, temp, 0)
+        # step 4: collect stats: VGS
+        self.vgs_l.append(self.VGV.sum())
+        # step 5: update strategies
+        self.mixed_strategy = utils.vector_update(self.mixed_strategy, self.VGV, rate)
 
 
 class Game(object):
@@ -52,36 +61,42 @@ class Game(object):
             temp_l.append(set(range(player.pure_strategies_num)))
         self.pure_product_space = list(itertools.product(*temp_l))
 
-    def compute_prob_dist(self, mixed_strategy=None, player=None):
+    def compute_joint_dist_on_vertex(self, player_index, pure_strategy_index):
         '''
-        when parameter `player` is not given:
-        return the prob dist computed from all the players' mixed strategies.
-        when parameter `player` is given:
         return the prob dist computed when the player changes its to the one
-        specified in the parameter `mixed_strategy` in the meantime the other
+        specified in the parameter `pure_strategy_index` in the meantime the other
         players keep theirs unchanged.
+        index i: for player
+        index j: for pure strategies of player i
+        index k: for the combination of pure strategies in `pure_product_space` and `prob_dict`
+        time complexity: (n-1)g^(n-1) multiplications
         '''
+
         prob_dist = np.zeros(len(self.pure_product_space))
-        # i: the index of point in the prodcut space
-        # j: the index of player
-        # k: the index of the pure strategy of player j
-        for i, combi in enumerate(self.pure_product_space):
+        for k, combi in enumerate(self.pure_product_space):
+            # ignore those combination without `pure_strategy_index` in it,
+            # leaving its prob. slot in `prob_dist` to zero
+            if combi[player_index] != pure_strategy_index:
+                continue
             prob = 1
-            for j, k in enumerate(combi):
-                if self.players[j] is not player:
-                    prob *= self.players[j].mixed_strategy[k]
+            # there are g^(n-1) combinations surviving here
+            for i, j in enumerate(combi):
+                if i == player_index and j == pure_strategy_index:
+                    # equivalent to multiplying by 1, which is the vertex prob.
+                    pass
                 else:
-                    prob *= mixed_strategy[k]
-            prob_dist[i] = prob
+                    # real deal: there are n-1 multiplications
+                    prob *= self.players[i].mixed_strategy[j]
+            prob_dist[k] = prob
         return prob_dist
 
     def eqpt(self):
         eqpts = [p.mixed_strategy for p in self.players]
-        vgs = [p.target for p in self.players]
+        vgs = [p.VGV for p in self.players]
         return eqpts, vgs
 
     def vgs_aggregation(self):
-        return np.sum([p.target.sum() for p in self.players])
+        return np.sum([p.VGV.sum() for p in self.players])
 
     def show_eqpt(self, eqpt):
         for i, (mixed, vgv) in enumerate(zip(eqpt[0], eqpt[1])):
@@ -89,8 +104,12 @@ class Game(object):
             print("     VGV:", vgv.round(4).tolist())
 
     def let_run_one_iteration(self, rate):
-        for player in self.players:
-            player.run_one_iteration(self, rate)
+        '''time complexity: n(n-1)g^n multiplications
+        multiprocessing would be nice here, supposedly reducing O(n^2g^n) to O(ng^n)
+        '''
+
+        for i, player in enumerate(self.players):
+            player.run_one_iteration(self, rate, i)
 
 
 if __name__ == '__main__':
