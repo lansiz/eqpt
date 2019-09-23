@@ -7,6 +7,7 @@ class Player(object):
     def __init__(self, pure_strategies_num):
         self.pure_strategies_num = pure_strategies_num
         self.vgs_l = []
+        self.path_l = []
 
     def assign_payoff(self, product_space_size, po_min=-1000, po_max=1000):
         pool = np.arange(po_min, po_max)
@@ -32,8 +33,9 @@ class Player(object):
         # step 3: compute VGV
         temp = v - payoff
         self.VGV = np.where(temp > 0, temp, 0)
-        # step 4: collect stats: VGS
+        # step 4: collect stats: VGS and path
         self.vgs_l.append(self.VGV.sum())
+        self.path_l.append(self.mixed_strategy)
         # step 5: update strategies
         self.mixed_strategy = utils.vector_update(self.mixed_strategy, self.VGV, rate)
 

@@ -63,10 +63,16 @@ The output figure is
 
 
 ## Demos for many-person games
-And you can run many-person game, which usually takes time. The many-person games are defined in the `FPI_nP.py` file. Its visualization of path has yet to be provided. Here is the command:
+And you can run many-person game, which usually takes time. The visualization of path is by the command:
+```
+python FPI_nP_path.py
+```
+
+![np](./nP-path.png)
+
+The approximating proces can visualized by the command:
 ```
 python FPI_nP.py
 ```
-Its approximating proces can visualized though, as follows:
 
-![np](./nP.png)
+![np vgs](./nP.png)

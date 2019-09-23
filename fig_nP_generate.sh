@@ -8,8 +8,8 @@ i=0
 while ((i<100))
 do
     {
-        python FPI_nP.py;
-        cp png/nP.png  png/np_"$i".png
+        python FPI_nP_path.py;
+        cp _png/nP-path.png  png/nP-path-"$i".png
     }
     ((i=i+1))
 done
