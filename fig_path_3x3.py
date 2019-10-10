@@ -64,8 +64,8 @@ def build_annotation(settings, eqpt_approx):
     text_right += '\napprox. EqPt:\n'
     text_left += str(eqpt_approx[0].round(4).tolist())[1:-1]
     text_right += str(eqpt_approx[1].round(4).tolist())[1:-1]
-    text_left += '\nVGS:'
-    text_right += '\nVGS:'
+    text_left += '\nregret sum:'
+    text_right += '\nregret sum:'
     text_left += str(eqpt_approx[2].sum().round(4))
     text_right += str(eqpt_approx[3].sum().round(4))
     return text_left, text_right

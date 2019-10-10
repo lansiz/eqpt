@@ -38,7 +38,7 @@ vgs_col /= xs_e
 ax.plot(xs, np.log(vgs_row), marker='.', color='red', alpha=.6, zorder=2)
 ax.plot(xs, np.log(vgs_col), marker='.', color='blue', alpha=.6, zorder=2)
 ax.set_xlabel('ln(payoff scale)', fontsize=utils.label_size)
-ax.set_ylabel('ln(VGS)', fontsize=utils.label_size)
+ax.set_ylabel('ln(regret sum)', fontsize=utils.label_size)
 # ax.tick_params(labelsize=8)
 plt.grid(True)
 plt.tight_layout()

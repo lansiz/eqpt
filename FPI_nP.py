@@ -171,7 +171,7 @@ if __name__ == '__main__':
     for player in game.players:
         plt.plot(np.log(player.vgs_l), alpha=.5)
     plt.xlabel('iterations', fontsize=utils.label_size)
-    plt.ylabel('ln(VGS)', fontsize=utils.label_size)
+    plt.ylabel('ln(regret sum)', fontsize=utils.label_size)
     plt.tight_layout()
     plt.savefig('nP.png', bbox_inches='tight')
     plt.show()
