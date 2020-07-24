@@ -1,9 +1,9 @@
 # A path finder for Nash equilibrium
 ## Overview
-This project provides many demo programs to show that the non-cooperative games always converges to Nash equilibrium no matter what initial strategy is given.
+This project provides many demo programs to show that the non-cooperative games always converges to Nash equilibrium no matter what initial strategy is given. To run the game, all you have to do is provide payoff matrices (functions) and initial strategies.
 The convergence path can be nicely visualized in the 2-D or 3-D graph.
 
-More math details are in [this paper](https://doi.org/10.1063/5.0012735).
+An algorithm called `geometrical regret matching` is the core of this program. More math details are in [this paper](https://doi.org/10.1063/5.0012735).
 
 ## Requirements
 ***
@@ -18,7 +18,7 @@ Find the strategy path to Nash equilibrium for a 3X3 game.
 ```
 python eqpt_trajectory_3x3.py 3x3_two_eqpt_two_support_2
 ```
-Here ***3x3_two_eqpt_two_support_2*** is the code name of a 3X3 game, which is defined the python file `games/3x3_two_eqpt_two_support_2.py`. This game has two equilibrium points each of which uses two pure strategies.
+Here ***3x3_two_eqpt_two_support_2*** is the code name of a 3X3 game, whose bimatrix and initial strategies are defined in the python file `games/3x3_two_eqpt_two_support_2.py`. This game has two equilibrium points each of which uses two pure strategies.
 The output figure shows that the strategy path goes to one of the equilibrium point dependent on what initial strategies the game starts with:
 
 ![3x3_two_eqpt_two_support_2](./trajectory_3x3.png)
@@ -29,7 +29,7 @@ Or you can run a game with random bimatrix and random initial strategies.
 ```
 python eqpt_trajectory_3x3.py 3x3
 ```
-Here game ***3x3*** is defined in `games/3x3.py`. In fact, you can define any game by creating a new Python file in the `games` directory. The following games with self-explanatory file names are predefined:
+Here game ***3x3*** is defined in `games/3x3.py`. In fact, you can define any game by creating a new Python file in the `games` directory. The following games with self-explanatory file names are predefined (note that those with 'fig_' prefix are for paper usage and should be run by `fig_path_3x3.py`):
 
 ![games list](./games_list.png)
 
@@ -70,7 +70,7 @@ python FPI_nP_path.py
 
 ![np](./nP-path.png)
 
-The approximating proces can visualized by the command:
+The approximating process can visualized by the command:
 ```
 python FPI_nP.py
 ```
