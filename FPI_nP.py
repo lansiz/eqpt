@@ -161,7 +161,7 @@ if __name__ == '__main__':
         vgs_ag_cur = game.vgs_aggregation()
         if vgs_ag_cur < vgs_ag_old:
             eqpt = game.eqpt()
-        vgs_ag_old = vgs_ag_cur
+            vgs_ag_old = vgs_ag_cur
 
     game.show_eqpt(eqpt)
 
