@@ -20,9 +20,10 @@ class FPI_2P(object):
         self.use_random_rate = False
 
     def print_game(self):
-        print('*** game settings:')
+        print('*** initial strategies ***')
         print(self.str_row.round(4))
         print(self.str_col.round(4))
+        print('*** payoff functions (bimatrix) ***')
         print(self.payoff_matrix_row)
         print(self.payoff_matrix_col)
 
@@ -150,5 +151,19 @@ class FPI_2P_VGS(FPI_2P):
         self.stats['vgs_col_l'] = []
 
     def collect_stats(self):
+        self.stats['vgs_row_l'].append(self.lambda_row.sum())
+        self.stats['vgs_col_l'].append(self.lambda_col.sum())
+
+
+class FPI_2P_Animation(FPI_2P):
+    def init_stats(self):
+        self.stats['str_row_l'] = []
+        self.stats['str_col_l'] = []
+        self.stats['vgs_row_l'] = []
+        self.stats['vgs_col_l'] = []
+
+    def collect_stats(self):
+        self.stats['str_row_l'].append(self.str_row)
+        self.stats['str_col_l'].append(self.str_col)
         self.stats['vgs_row_l'].append(self.lambda_row.sum())
         self.stats['vgs_col_l'].append(self.lambda_col.sum())

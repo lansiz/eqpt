@@ -1,2 +1,6 @@
 __pycache__
 png/*.png
+**/*.pkl
+**/*.pdf
+**/*.mp4
+tags

@@ -2,6 +2,7 @@ import numpy as np
 from sklearn.decomposition import PCA
 import argparse
 import importlib
+import pickle
 
 np.printoptions(surpress=True)
 np.set_printoptions(formatter={'all': lambda x: str(x)})
@@ -85,3 +86,23 @@ def pick_a_neighour(arr, devi=.01):
     disc = (np.random.rand(size) - .5) * 2 * devi
     added = arr + disc
     return added / added.sum()
+
+
+def read_pickle(file_name):
+    try:
+        f = open('./' + file_name, 'rb')
+        o = pickle.load(f)
+        f.close()
+        return o
+    except:
+        return None
+
+
+def write_pickle(o, file_name):
+    try:
+        f = open('./' + file_name, 'wb')
+        pickle.dump(o, f, pickle.HIGHEST_PROTOCOL)
+        f.close()
+        return True
+    except:
+        return False
