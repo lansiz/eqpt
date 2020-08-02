@@ -107,24 +107,24 @@ class FPI_2P(object):
         try:
             import nashpy
         except ModuleNotFoundError:
-            print('Error: Python library `nashpy` must be installed to use Lemke-Howson algorithm.')
-            print('       And command `pip install nashpy` will install it.')
-            import sys
-            sys.exit(1)
-        game = nashpy.Game(self.payoff_matrix_row, self.payoff_matrix_col)
-        if method == 'lemke_howson':
-            eqpts = game.lemke_howson_enumeration()
-        elif method == 'support_enumeration':
-            eqpts = game.support_enumeration()
-        elif method == 'vertex_enumeration':
-            eqpts = game.vertex_enumeration()
+            print('Warning: to use the classic Lemke-Howson algorithm for validation, Python library `nashpy` must be installed. And command `pip install nashpy` will install it.')
+            # import sys
+            # sys.exit(1)
         else:
-            print('whatever')
-            import sys
-            sys.exit(1)
-        print(method, 'algorithm found:')
-        for i, item in enumerate(eqpts):
-            print('EQPT %s:' % i, item)
+            game = nashpy.Game(self.payoff_matrix_row, self.payoff_matrix_col)
+            if method == 'lemke_howson':
+                eqpts = game.lemke_howson_enumeration()
+            elif method == 'support_enumeration':
+                eqpts = game.support_enumeration()
+            elif method == 'vertex_enumeration':
+                eqpts = game.vertex_enumeration()
+            else:
+                print('whatever')
+                import sys
+                sys.exit(1)
+            print(method, 'algorithm found:')
+            for i, item in enumerate(eqpts):
+                print('EQPT %s:' % i, item)
 
     @classmethod
     def display_eqpt(cls, eqpt_l):
