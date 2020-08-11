@@ -129,10 +129,10 @@ class FPI_2P(object):
     @classmethod
     def display_eqpt(cls, eqpt_l):
         print('rEQPT:', eqpt_l[0].round(4).tolist())
-        print('rVGV: ', eqpt_l[2].round(4).tolist())
+        print('rRegretVec: ', eqpt_l[2].round(4).tolist())
         print('cEQPT:', eqpt_l[1].round(4).tolist())
-        print('cVGV: ', eqpt_l[3].round(4).tolist())
-        print('VGS:  %s %s' % (np.round(np.sum(eqpt_l[2]), 4), np.round(np.sum(eqpt_l[3]), 4)))
+        print('cRegretVec: ', eqpt_l[3].round(4).tolist())
+        print('RegretSum:  %s %s' % (np.round(np.sum(eqpt_l[2]), 4), np.round(np.sum(eqpt_l[3]), 4)))
 
 
 class FPI_2P_Stgy(FPI_2P):

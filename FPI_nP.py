@@ -103,7 +103,7 @@ class Game(object):
     def show_eqpt(self, eqpt):
         for i, (mixed, vgv) in enumerate(zip(eqpt[0], eqpt[1])):
             print("player %s:" % i, mixed.round(4).tolist())
-            print("     VGV:", vgv.round(4).tolist())
+            print("     RegretVec:", vgv.round(4).tolist())
 
     def let_run_one_iteration(self, rate):
         '''time complexity: n(n-1)g^n multiplications

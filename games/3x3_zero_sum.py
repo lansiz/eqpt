@@ -9,4 +9,6 @@ use_LH = True
 
 str_row_init = utils.randomize_mixed_strategy(3)
 str_col_init = utils.randomize_mixed_strategy(3)
-payoff_matrix_row, payoff_matrix_col = utils.randomize_payoff_matrix(3, 3)
+payoff_matrix_row, _ = utils.randomize_payoff_matrix(3, 3)
+# nagtive matrix
+payoff_matrix_col = - payoff_matrix_row

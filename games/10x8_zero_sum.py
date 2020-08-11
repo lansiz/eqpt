@@ -10,4 +10,5 @@ use_LH = True
 
 str_row_init = utils.randomize_mixed_strategy(10)
 str_col_init = utils.randomize_mixed_strategy(8)
-payoff_matrix_row, payoff_matrix_col = utils.randomize_payoff_matrix(10, 8)
+payoff_matrix_row, _ = utils.randomize_payoff_matrix(10, 8)
+payoff_matrix_col = - payoff_matrix_row
