@@ -8,6 +8,13 @@ payoff_scale = 10 ** 0
 display_game = True
 use_LH = True
 
+# to the 1sp eqpt
+# str_row_init = np.array([0, 0, .98, .02, 0, 0, 0, 0])
+# str_col_init = np.array([.98, 0.02, 0, 0, 0, 0, 0, 0])
+# to the 2sp eqpt
+# str_row_init = np.array([.15, 0, 0, 0, 0, .85, 0, 0])
+# str_col_init = np.array([0, 0, 0, 0, 0, .20, 0, .80])
+# to the 3sp eqpt
 str_row_init = utils.randomize_mixed_strategy(8)
 str_col_init = utils.randomize_mixed_strategy(8)
 

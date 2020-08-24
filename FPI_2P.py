@@ -167,3 +167,17 @@ class FPI_2P_Animation(FPI_2P):
         self.stats['str_col_l'].append(self.str_col)
         self.stats['vgs_row_l'].append(self.lambda_row.sum())
         self.stats['vgs_col_l'].append(self.lambda_col.sum())
+
+
+class FPI_2P_Regret_Vector(FPI_2P):
+    def init_stats(self):
+        self.stats['str_row_l'] = []
+        self.stats['str_col_l'] = []
+        self.stats['vgv_row_l'] = []
+        self.stats['vgv_col_l'] = []
+
+    def collect_stats(self):
+        self.stats['str_row_l'].append(self.str_row)
+        self.stats['str_col_l'].append(self.str_col)
+        self.stats['vgv_row_l'].append(self.lambda_row)
+        self.stats['vgv_col_l'].append(self.lambda_col)

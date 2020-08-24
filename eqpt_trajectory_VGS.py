@@ -47,7 +47,7 @@ import matplotlib.pyplot as plt
 plt.plot(np.log(np.array(stats['vgs_row_l'])), color='red', alpha=.6)
 plt.plot(np.log(np.array(stats['vgs_col_l'])), color='blue', alpha=.6)
 plt.xlabel('iterations')
-plt.ylabel('ln(VGS)')
+plt.ylabel('ln(regret sum)')
 plt.grid(True)
 plt.tight_layout()
 plt.savefig('trajectory_vgs.png')

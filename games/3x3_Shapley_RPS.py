@@ -20,3 +20,6 @@ payoff_matrix_col = np.array([
     [1, 0, 0]])
 payoff_matrix_row = payoff_matrix_row * payoff_scale
 payoff_matrix_col = payoff_matrix_col * payoff_scale
+
+eqpts = [
+    (np.array([1 / 3, 1 / 3, 1 / 3]), np.array([1 / 3, 1 / 3, 1 / 3]))]

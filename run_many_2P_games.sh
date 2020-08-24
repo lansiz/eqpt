@@ -3,7 +3,7 @@ set -euo pipefail
 trap "echo 'Script failed'" ERR
 IFS=$'\n\t'
 
-log='games_6x4.log'
+log='games_2P.log'
 echo '' > "$log"
 
 i="0"
@@ -11,7 +11,7 @@ i="0"
 while ((i<1000))
 do
     {
-        python approximate_a_eqpt.py 6x4;
+        python approximate_an_eqpt.py 8x8_PT_2;
         echo '-------------------------------------------------------------------------------------------------------';
         echo;
     } >> "$log"
