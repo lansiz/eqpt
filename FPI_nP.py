@@ -101,9 +101,15 @@ class Game(object):
         return np.sum([p.VGV.sum() for p in self.players])
 
     def show_eqpt(self, eqpt):
+        regret_sum_l = []
         for i, (mixed, vgv) in enumerate(zip(eqpt[0], eqpt[1])):
-            print("player %s:" % i, mixed.round(4).tolist())
+            regret_sum_l.append(vgv.sum())
+            print("player %s:" % i)
+            print('          EQPT:', mixed.round(4).tolist())
             print("     RegretVec:", vgv.round(4).tolist())
+        regret_sum_a = np.array(regret_sum_l).round(4)
+        print("RegretSum: ", *regret_sum_a)
+        print("OverallRegretSum: %s" % np.round(regret_sum_a.sum(), 4))
 
     def let_run_one_iteration(self, rate):
         '''time complexity: n(n-1)g^n multiplications

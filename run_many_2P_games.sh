@@ -11,7 +11,7 @@ i="0"
 while ((i<1000))
 do
     {
-        python approximate_an_eqpt.py 8x8_PT_2;
+        python approximate_an_eqpt.py $1;
         echo '-------------------------------------------------------------------------------------------------------';
         echo;
     } >> "$log"
