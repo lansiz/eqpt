@@ -6,13 +6,13 @@ import utils
 rate = 10 ** -5
 
 game = Game()
-
-game.let_join(Player(3))
-game.let_join(Player(3))
-game.let_join(Player(3))
-game.let_join(Player(3))
-game.let_join(Player(3))
-game.let_join(Player(3))
+strategy_nu = 3
+# game.let_join(Player(strategy_nu))
+game.let_join(Player(strategy_nu))
+game.let_join(Player(strategy_nu))
+game.let_join(Player(strategy_nu))
+game.let_join(Player(strategy_nu))
+game.let_join(Player(strategy_nu))
 
 game.build_product_space_of_pures()
 game.let_assign_payoff()
@@ -51,5 +51,5 @@ for aplayer in game.players:
     ax.plot(x_a, y_a, alpha=.5, zorder=2)
 
 plt.tight_layout()
-plt.savefig('nP-path.png', bbox_inches='tight')
-plt.show()
+plt.savefig('png/nP-path.png', bbox_inches='tight')
+# plt.show()

@@ -179,5 +179,5 @@ if __name__ == '__main__':
     plt.xlabel('iterations', fontsize=utils.label_size)
     plt.ylabel('ln(regret sum)', fontsize=utils.label_size)
     plt.tight_layout()
-    plt.savefig('nP.png', bbox_inches='tight')
-    plt.show()
+    plt.savefig('png/nP.png', bbox_inches='tight')
+    # plt.show()
