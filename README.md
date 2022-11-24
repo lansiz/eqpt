@@ -1,3 +1,5 @@
+**Update** @2022.11.24: [Nash Finder](https://github.com/lansiz/nash-finder), a tool to find all Nash equilibria for all games, is at your service.
+
 # A path finder for Nash equilibrium
 
 ## Overview
